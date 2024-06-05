@@ -1,6 +1,7 @@
 #include "hpch.hpp"
 
 #include "Application.hpp"
+#include "Logger.hpp"
 
 namespace Horizon {
 
@@ -9,10 +10,12 @@ namespace Horizon {
     Application::Application(const std::string& name)
     {
         if (s_Instance != nullptr) {
-            std::cerr << "Application already created (can only create one)" << std::endl;
+            HERROR("Application already created (can only create one)");
         }
 
         s_Instance = this;
+
+        Logger::Init();
 
         (void)name;
     }
@@ -24,7 +27,7 @@ namespace Horizon {
 
     void Application::Run()
     {
-        std::cout << "Running..." << std::endl;
+        HINFO("Running...");
     }
 
 }
